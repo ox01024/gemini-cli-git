@@ -1,0 +1,5 @@
+# In: ~/.gemini/commands/git/commit.toml
+# Invoked via: /git:commit
+
+description = "为暂存更改编写Commit"
+prompt = "阅读Git暂存区修改，生成符合Conventional Commits规范的提交信息" 
