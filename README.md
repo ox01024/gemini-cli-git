@@ -23,7 +23,7 @@ This extension provides the following commands:
 Install the Git extension by running the following command from your terminal *(requires Gemini CLI)*:
 
 ```bash
-gemini extensions install <URL_to_this_repository>
+gemini extensions install github.com/ox01024/gemini-cli-git
 ```
 
 ## Usage
