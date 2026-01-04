@@ -1,5 +1,14 @@
 # In: ~/.gemini/commands/git/commit.toml
 # Invoked via: /git:commit
 
-description = "为暂存更改编写Commit"
-prompt = "阅读Git暂存区修改，生成符合Conventional Commits规范的提交信息" 
+description = "为暂存更改编写 Commit 信息"
+prompt = """
+请根据以下的 `git diff --cached` 输出，生成符合 Conventional Commits 规范的提交信息。
+
+暂存区更改：
+!{git diff --cached --diff-algorithm=minimal}
+
+要求：
+- 格式遵循 Conventional Commits 规范。
+- 包含清晰的标题，必要时提供详细描述。
+""" 

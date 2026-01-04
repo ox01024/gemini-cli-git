@@ -1,0 +1,33 @@
+# Invoked via: /git:commit-push-pr
+
+description = "提交更改，推送到远程，并自动检测使用 GitHub (gh) 或 GitLab (glab) 创建 Pull/Merge Request"
+prompt = """
+根据以下上下文，生成完成“提交 -> 推送 -> 创建 PR/MR”流程的 Shell 命令。
+
+上下文信息：
+- 远程仓库地址: !{git remote get-url origin}
+- 当前分支: !{git branch --show-current}
+- Git 状态:
+!{git status}
+
+- 变更差异 (Diff):
+!{git diff HEAD --diff-algorithm=minimal}
+
+任务要求：
+1. **工具选择**：检查“远程仓库地址”。
+   - 如果地址包含 `gitlab`，使用 `glab mr create`。
+   - 否则（默认），使用 `gh pr create`。
+
+2. **分支检查**：如果当前分支是 `main` 或 `master`，请基于变更内容生成一个具有描述性的新分支名（kebab-case），并切换到该分支。
+
+3. **提交**：添加所有更改，并生成符合 Conventional Commits 规范的提交信息。
+
+4. **推送**：将分支推送到远程 `origin`。
+
+5. **创建 PR/MR**：
+   - 使用选定的工具（`gh` 或 `glab`）。
+   - 使用提交信息作为标题和内容。
+   - 添加 `--web` 标志以便用户可以在浏览器中最后确认。
+
+请输出可以直接执行的 Shell 脚本。
+"""

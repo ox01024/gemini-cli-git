@@ -1,4 +1,0 @@
-# Invoked via: /git:ctnb
-
-description = "提交暂存更改至新建分支"
-prompt = "分析Git暂存区修改，为暂存的修改取一个合适的分支名，并生成符合Conventional Commits规范的提交信息，并提交到新分支"

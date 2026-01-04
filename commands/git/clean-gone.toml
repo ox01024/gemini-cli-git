@@ -1,0 +1,21 @@
+# Invoked via: /git:clean-gone
+
+description = "清理所有标记为 [gone] 的 git 分支（即远程已删除但本地仍存在的分支），包括删除关联的工作树。"
+prompt = """
+根据以下命令的输出，生成清理已在远程删除（[gone]）的本地分支和相关工作树的 shell 命令。
+
+Git 分支状态：
+!{git branch -vv}
+
+Git 工作树状态：
+!{git worktree list}
+
+请分析上述信息：
+1. 找出所有标记为 `[gone]` 的分支。
+2. 检查这些分支是否关联了工作树（通过 `+` 前缀或工作树列表）。
+3. 生成一系列命令来：
+    - 强制删除关联的工作树 (`git worktree remove --force <path>`)
+    - 强制删除分支 (`git branch -D <branch>`)
+
+如果没有任何分支需要清理，请输出“没有发现需要清理的分支。”
+"""
